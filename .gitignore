@@ -1,2 +1,6 @@
+# dot file
 .DS_Store
 .env
+
+# test folder
+test/

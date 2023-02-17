@@ -1,5 +1,32 @@
 connect to db ok
 simple search for db (select) ok
 
-use jieba to search
+token 的作用 ok
+{
 
+3(id), 
+
+00001469-0017.jpg(useless filename), 
+
+女童黄色连衣裙(description important for searching), 
+
+(token meaning : the first 101 and the last 102 is for alignment, and the rest means chinese letter, for example 出 is 1139, 
+
+Textual Encoder. The textual encoder is a standard decoder-only transformer as in [35]. We use
+WordPiece [52] with a vocabulary size of 21,128 for Chinese text tokenization. Similar to [33],
+we add spaces around Chinese characters before applying WordPiece so that Chinese is effectively
+character-tokenized. We add two special tokens (i.e., [CLS] and [SEP]) at the beginning and ending
+of each text sequence. The text encoder has 12 layers, each of which has 8 attention heads and a
+hidden state dimension of 512)
+
+[101, 1957, 4997, 7942, 5682, 6825, 6132, 6170, 102, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+
+https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fa.vpimg2.com%2Fupload%2Fmerchandise%2F227958%2FLYQ-S314186413-3.jpg&refer=http%3A%2F%2Fa.vpimg2.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1632501843&t=b0a3b843f9ecebd71fe6f27643c17486 (url to access image)
+
+}
+
+search for db using 分词 (slow searching, need to be improved)
+
+
+requirement: high performance searching(how to establish a good searching data structure from mysql)
+priority: backend
