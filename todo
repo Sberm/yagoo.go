@@ -26,6 +26,8 @@ https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fa.vpimg2.com%2Fupload%2Fme
 }
 
 search for db using 分词 (slow searching, need to be improved)
+how to search for cut-word? Should I read the source code?
+how to do the preprocessing?
 
 
 requirement: high performance searching(how to establish a good searching data structure from mysql)
