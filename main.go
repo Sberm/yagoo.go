@@ -1,9 +1,8 @@
 package main
 
 import (
+	"fmt"
 	"log"
-
-	"yagoo/database"
 	"yagoo/search"
 
 	"gopkg.in/ini.v1"
@@ -29,18 +28,22 @@ func main() {
 	initPath := "my.ini"
 	loadIniFile(initPath)
 
-	// create db instance
-	db, err := database.ConnectDataBase(user, password, dbname)
-	if err != nil {
-		log.Fatal("Error connecting to database: ", err)
-	}
+	/* read csv ,  preprocess data(into inverted index).*/
+	// csvPath := "resources/wukong_test.csv"
+	// storage.PreProcess(csvPath)
 
-	searchText := "欢迎光临会员制餐厅"
-	search.SearchCutWord(searchText, db)
+	/* iterate and print leveldb */
+	// storage.TestPrintDB("./data")
 
-	// var wukong_test database.Wukong_data
-	// db.First(&wukong_test, 3)
-	// fmt.Println(wukong_test)
+	/* test Leveldb value */
+	// test.TestPrintValue("./data", "的")
+
+	/*search for a token*/
+	e := search.NewEngine("./data", 30)
+	var token string
+	fmt.Println("Enter what you what to search:")
+	fmt.Scan(&token)
+	e.SearchCutWord(token)
 
 	return
 }

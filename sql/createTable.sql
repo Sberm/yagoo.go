@@ -2,7 +2,7 @@ CREATE TABLE wukong_data (
 	id INT NOT NULL AUTO_INCREMENT,
 	dir VARCHAR(255),
 	text VARCHAR(255),
-	token VARCHAR(1000),
+	token VARCHAR(500),
 	url VARCHAR(700),
     alt_id VARCHAR(55),
     PRIMARY KEY(id)

@@ -27,8 +27,35 @@ https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fa.vpimg2.com%2Fupload%2Fme
 
 search for db using 分词 (slow searching, need to be improved)
 how to search for cut-word? Should I read the source code?
-how to do the preprocessing?
 
 
+
+
+
+
+additional:
+index compression?
+query suggesting, pagerank.
+
+
+# 2.25
+1. write the Put function to preprocess the data, also as an interface for future custom adding index function
+2. preprocess the inverted index, ids encode as .gob file,store them in leveldb
+3. query function(make it simple, single thread), do the ranking. 
+4. write front end.
+
+
+====================================================================================================
 requirement: high performance searching(how to establish a good searching data structure from mysql)
 priority: backend
+====================================================================================================
+
+
+
+
+
+
+
+
+
+
