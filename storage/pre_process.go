@@ -19,7 +19,7 @@ func PreProcess(path string) {
 
 	r := csv.NewReader(f)
 
-	index := uint32(1)
+	index := uint32(0)
 
 	s, err := Init("./data", 30)
 	if err != nil {
@@ -31,13 +31,13 @@ func PreProcess(path string) {
 	wordCount := 0
 	for {
 		// to do: skip first line
-		if index == 0 {
-			index++
-			continue
-		}
 		record, err := r.Read()
 		if err == io.EOF {
 			break
+		}
+		if index == 0 {
+			index++
+			continue
 		}
 		if err != nil {
 			log.Fatal(err)

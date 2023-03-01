@@ -41,8 +41,8 @@ func (e *Engine) SearchCutWord(text string) {
 
 	fmt.Println("searching :", strings.Join(words, "|"))
 
-	record_map := make(map[uint32]int)
 	records := make([]Record, 0)
+	record_map := make(map[uint32]int, 0)
 
 	for _, word := range words {
 		ids_orig, err := e.s.Get([]byte(word))
@@ -50,6 +50,7 @@ func (e *Engine) SearchCutWord(text string) {
 			fmt.Printf("Search for word: %s, No records found. (%s)\n", word, err)
 		}
 		ids := make([]uint32, 0)
+
 		util.Decode(ids_orig, &ids)
 		for _, id := range ids {
 			_, exist := record_map[id]
@@ -65,9 +66,10 @@ func (e *Engine) SearchCutWord(text string) {
 		}
 	}
 	sort.Slice(records, func(i, j int) bool {
-		return records[i].count < records[j].count
+		return records[i].count > records[j].count
 	})
 
+	// use init file later
 	db, err := database.ConnectDataBase("root", "112358", "wukongDB")
 	if err != nil {
 		log.Fatal("Open Mysql failed, err:", err)
@@ -76,8 +78,16 @@ func (e *Engine) SearchCutWord(text string) {
 	data := database.Wukong_data{}
 
 	fmt.Println("Search result:\n")
-	for i := 0; i < 5; i++ {
-		fmt.Println("i =", i)
+
+	records_count := 0
+	if records_count < len(records) {
+		records_count = len(records)
+	}
+	if records_count > 20 {
+		records_count = 20
+	}
+
+	for i := 0; i < records_count; i++ {
 		fmt.Printf("id : %d, count : %d\n", records[i].id, records[i].count)
 		// clear data before every time SELECT ing
 		data = database.Wukong_data{}

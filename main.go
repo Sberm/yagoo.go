@@ -35,8 +35,12 @@ func main() {
 	/* iterate and print leveldb */
 	// storage.TestPrintDB("./data")
 
+	/* get a certain database id*/
+	// str := test.GetDBValue(1)
+	// fmt.Println(str)
+
 	/* test Leveldb value */
-	// test.TestPrintValue("./data", "的")
+	// test.TestPrintValue("./data", "连衣裙")
 
 	/*search for a token*/
 	e := search.NewEngine("./data", 30)
