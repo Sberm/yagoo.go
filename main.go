@@ -1,9 +1,9 @@
 package main
 
 import (
-	"fmt"
 	"log"
-	"yagoo/search"
+
+	"yagoo/web"
 
 	"gopkg.in/ini.v1"
 )
@@ -43,11 +43,14 @@ func main() {
 	// test.TestPrintValue("./data", "连衣裙")
 
 	/*search for a token*/
-	e := search.NewEngine("./data", 30)
-	var token string
-	fmt.Println("Enter what you what to search:")
-	fmt.Scan(&token)
-	e.SearchCutWord(token)
+	// e := search.NewEngine("./data", 30)
+	// var token string
+	// fmt.Println("Enter what you what to search:")
+	// fmt.Scan(&token)
+	// e.SearchCutWord(token)
+
+	/*gin test*/
+	web.GinTest()
 
 	return
 }

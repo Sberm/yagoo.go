@@ -55,7 +55,15 @@ priority: backend
 
 你的孩子符合条件吗?滨海这所幼儿园即将开园!
 
+# 3.10
+use gin to fetch the data from client side.
+use vue.js to send the data to server side.
 
+how to use vue.js in the app?
+is it in project file?
+do you use npm run to run the app?
+or do you use gin?
 
+gin used only for backend data transfer, use npm run to start the frontend app.
 
-
+web-app/assets main.css stores #app
