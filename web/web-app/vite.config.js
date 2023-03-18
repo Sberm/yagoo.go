@@ -16,8 +16,7 @@ export default defineConfig({
     port : 8080,
     proxy : {
       '/search' : {
-        // target: 'http://127.0.0.1:3030',
-        target: 'http://121.4.70.160:1145',
+        target: 'http://127.0.0.1:3030',
         changeOrigin: true,
         secure: false,
       },
