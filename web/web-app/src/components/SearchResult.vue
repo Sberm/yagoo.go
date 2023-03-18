@@ -1,41 +1,57 @@
 <script>
+
 export default {
     data() {
         return {
-            foo : "bar",
+            foo : "",
             items : [
                 {"text" : "hello", "message" : "hello"},
                 {"text" : "world", "message" : "world"}
             ],
-            data: null
+            data: null,
+            is_loading : false
         }
     },
     methods : {
-        async fetchData() {
+        async fetchData(q) {
             // GET request using fetch with async/await
-            console.log("fetching")
-            this.data = await (await fetch("http://localhost:8080/albums")).json();
-        }
+            console.log("fetching", q)
+            var request = {
+                query : q 
+            }
+
+            var requestOptions = {
+                method: "POST",
+                headers: { "Content-Type": "application/json;charset=UTF-8"},
+                body: JSON.stringify(request)
+            }
+
+            console.log("body: ", requestOptions.body)
+
+            this.is_loading = true 
+
+            var temp = await fetch("http://localhost:8080/search", requestOptions)
+            this.data = await temp.json()
+
+            this.is_loading = false 
+        },
     }
 }
 </script>
 
 <template>
     <div class = "wrapper">
-        <!-- <ol>
-            <li class = "item" v-for = "item in items" :key = "item.message">{{ item.text }}</li>
-        </ol> -->
-        <div class = "buttonD">
-            <button @click="fetchData">fetch</button>
+        <div v-if = "!is_loading">
+            <div v-if = "!is_loading" class = "item" v-for = "{id, dir,text, token, url} in data" :key = "id">
+                <div v-if = "!is_loading">{{ text }}</div>
+                <div v-if = "!is_loading" class = "imgCont">
+                    <img :src = "url" />
+                </div>
+            </div>
         </div>
-        <ol>
-            <li class = "item" v-for = "{id, title, artist, price} in data" :key = "id">
-                <span>{{ id }}</span>
-                <span>{{ title }}</span>
-                <span>{{ artist }}</span>
-                <span>{{ price }}</span>
-            </li>
-        </ol>
+        <div v-else class = "loading">
+            <img src = "./icons/loading.gif" />
+        </div>
     </div>
 </template>
 
@@ -44,6 +60,8 @@ export default {
 button {
     margin: 0 auto;
 }
+
+
 .buttonD {
     /* align-items: center; */
     display: flex;
@@ -56,11 +74,36 @@ button {
     margin: 2rem;
 }
 .item {
-    margin: 0 15rem;
-    border: solid 1px black;
+    margin: 2rem 10rem;
+    /* border: solid 1px black; */
+    border:none;
 }
 
-.item > span{
+.item div{
+    font-size: 20px;
     margin: 0 4px;
+}
+
+.imgCont {
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+}
+
+.item img {
+    max-width: 100%;
+    max-height: 20rem;
+    display: inline-block;
+}
+
+.loading {
+    display: flex;
+    /* justify-content is the king of centering */
+    justify-content: center; 
+}
+
+.loading img{
+    max-width: 100%;
+    max-height: 100px;
 }
 </style>

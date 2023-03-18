@@ -15,9 +15,14 @@ export default defineConfig({
   server: {
     port : 8080,
     proxy : {
-      '/albums' : 'http://localhost:3030'
-    },
-    cors : false
+      '/search' : {
+        // target: 'http://127.0.0.1:3030',
+        target: 'http://121.4.70.160:1145',
+        changeOrigin: true,
+        secure: false,
+      },
+      '/albums' : 'http://localhost:3030',
+    }
   },
 })
 

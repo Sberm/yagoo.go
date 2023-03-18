@@ -2,7 +2,6 @@ package main
 
 import (
 	"log"
-
 	"yagoo/web"
 
 	"gopkg.in/ini.v1"
@@ -50,7 +49,8 @@ func main() {
 	// e.SearchCutWord(token)
 
 	/*gin test*/
-	web.GinTest()
+	// web.GinTest()
 
-	return
+	/*search and return data to front end*/
+	web.GinTest()
 }

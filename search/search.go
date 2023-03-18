@@ -32,7 +32,7 @@ func NewEngine(path string, timeOut int64) *Engine {
 	return e
 }
 
-func (e *Engine) SearchCutWord(text string) {
+func (e *Engine) SearchCutWord(text string) []SearchResult {
 	tr := util.NewTokenizer()
 	words := tr.CutWord(text)
 	fmt.Println("text :", text)
@@ -77,21 +77,38 @@ func (e *Engine) SearchCutWord(text string) {
 
 	data := database.Wukong_data{}
 
-	fmt.Println("Search result:\n")
+	// fmt.Println("Search result:\n")
+
+	max_record := 5
 
 	records_count := 0
 	if records_count < len(records) {
 		records_count = len(records)
 	}
-	if records_count > 20 {
-		records_count = 20
+	if records_count > max_record {
+		records_count = max_record
 	}
 
+	searchResult := make([]SearchResult, max_record)
+
 	for i := 0; i < records_count; i++ {
-		fmt.Printf("id : %d, count : %d\n", records[i].id, records[i].count)
-		// clear data before every time SELECT ing
+		/*
+			fmt.Printf("id : %d, count : %d\n", records[i].id, records[i].count)
+			// clear data before every time SELECT ing
+			data = database.Wukong_data{}
+		*/
 		data = database.Wukong_data{}
 		db.Where("id=?", strconv.FormatUint(uint64(records[i].id), 10)).First(&data)
-		fmt.Println("result:\n", data.Text)
+		searchResult[i] = SearchResult{
+			ID:    string(data.ID),
+			Dir:   data.Dir,
+			Text:  data.Text,
+			Token: data.Token,
+			Url:   data.Url,
+		}
+
 	}
+
+	return searchResult
+
 }

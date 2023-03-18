@@ -1,12 +1,21 @@
 <script setup> // setup is a must-have
 import Author from './components/Author.vue'
 import SearchResult from './components/SearchResult.vue'
-
+import SearchBar from './components/SearchBar.vue'
 </script>
 
 <script>
 export default  {
-
+    data() {
+        return {
+        }
+    },
+    methods: {
+        search(query) {
+            console.log("Searching for:", query)
+            this.$refs.searchR.fetchData(query)
+        }
+    }
 }
 </script>
 
@@ -16,11 +25,9 @@ export default  {
         <Author msg = "Howard Chu"/>
     </header>
 
-    <!-- <button>the button</button> -->
+    <SearchBar @returnQuery="search"/>
 
-    <SearchResult />
-
-
+    <SearchResult ref = "searchR"/>
 </template>
 
 <style>
