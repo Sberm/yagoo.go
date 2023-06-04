@@ -38,7 +38,7 @@ button:hover{
 
 .title {
   /* the two numbers in padding: has to be different */
-  padding: 2rem; 
+  padding: 0.1rem 1.2rem; 
   place-items: center;
 }
 

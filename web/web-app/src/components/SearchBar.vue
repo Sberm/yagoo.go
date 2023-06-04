@@ -15,7 +15,6 @@ export default {
 
 <template>
     <div class = "container">
-        <!-- <form class = "search-bar" method = "post"> -->
         <form class = "search-bar" @submit.prevent="query">
             <input v-model = "search_text" placeholder="Search anything" type = "text">
             <button type = 'button' @click="query"><img src = "./icons/search_icon.png"></button>
@@ -26,9 +25,9 @@ export default {
 
 <style>
 .container {
-    margin: 2rem;
-    min-height: 1rem;
-    padding: 5%;
+    margin: 0.2rem;
+    min-height: 0.3rem;
+    padding: 2.5rem 0rem;
     display: flex;
     align-items: center;
     justify-content: center;

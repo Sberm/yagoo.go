@@ -15,17 +15,9 @@ defineProps({
 
 <style scoped>
 .author{
-    /* display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center; */
-    /* dont use text-align in parent class */
-    /* text-align: center; */
-
     /* if an element has a padding it can be select on F12 */
-    padding: 1rem;
-    margin: 1rem;
+    padding: 0.3rem;
+    margin: 0.2rem;
 }
 
 /* class name and tag name: child tag in the parent class */

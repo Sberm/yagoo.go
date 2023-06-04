@@ -77,9 +77,7 @@ func (e *Engine) SearchCutWord(text string) []SearchResult {
 
 	data := database.Wukong_data{}
 
-	// fmt.Println("Search result:\n")
-
-	max_record := 5
+	max_record := 20
 
 	records_count := 0
 	if records_count < len(records) {
@@ -92,11 +90,6 @@ func (e *Engine) SearchCutWord(text string) []SearchResult {
 	searchResult := make([]SearchResult, max_record)
 
 	for i := 0; i < records_count; i++ {
-		/*
-			fmt.Printf("id : %d, count : %d\n", records[i].id, records[i].count)
-			// clear data before every time SELECT ing
-			data = database.Wukong_data{}
-		*/
 		data = database.Wukong_data{}
 		db.Where("id=?", strconv.FormatUint(uint64(records[i].id), 10)).First(&data)
 		searchResult[i] = SearchResult{
@@ -106,7 +99,6 @@ func (e *Engine) SearchCutWord(text string) []SearchResult {
 			Token: data.Token,
 			Url:   data.Url,
 		}
-
 	}
 
 	return searchResult
