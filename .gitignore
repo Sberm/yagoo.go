@@ -3,10 +3,14 @@
 .env
 
 # test folder
-test/
+test
 
 # test file
 test.go
 
+# folders
 todo
 node_modules
+
+# nohup
+nohup.out
