@@ -30,7 +30,7 @@ export default {
 
             this.is_loading = true 
 
-            var temp = await fetch("http://localhost:8080/search", requestOptions)
+            var temp = await fetch("http://43.153.212.240:8080/search", requestOptions)
             this.data = await temp.json()
 
             this.is_loading = false 
